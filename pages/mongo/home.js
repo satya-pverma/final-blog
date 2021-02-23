@@ -1,10 +1,10 @@
 
+import next from 'next';
 import Realm from 'realm'
 import { generateBlog} from "../../helpers/utils";
 import Navbar from './Navbar';
 import Link from 'next/link'
-import { useEffect } from 'react';
-import Router, {withRouter} from 'next/router'
+
 
 
 
@@ -50,26 +50,16 @@ return {props:{post} }
 
 
 function Blog(props) {
-
-	useEffect(() => {
-		const user = JSON.parse(localStorage.getItem("useractive"));
-		if (user) {
-		 
-		} else {
-		  Router.push( {pathname: "/mongo/home"});
-		}
-	  }, []);
-
 return(
 	<>
 	<Navbar/>
-	<div   >
+	<div>
 		
-		{ 	console.log(props.post),
+		{ //	console.log(props.post),
 			props.post.map(item=>{
-		
+			if(item.public=="true"){
 				return(
-					<div className="card home-card" style={{marginTop:"30px"}}>
+                    <div className="card home-card" style={{marginTop:"30px"}}>
             
                         
                     <div className="card-img">
@@ -102,13 +92,14 @@ return(
         
                 </div>
 			
-			)
+			)}
 			})
 		
 			
 		}
 	</div>
-	<style jsx>{`
+          
+			<style jsx>{`
 				
                 
                 .mycard{
@@ -158,7 +149,7 @@ return(
                           
               
                           `}</style>
-						  <style jsx global>{`
+                           <style jsx global>{`
             @import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css");
 				main {
 					max-width: 800px;

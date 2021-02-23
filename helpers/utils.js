@@ -18,6 +18,10 @@ function generateBlog(data) {
 					title: post.title,
 					body: post.body,
 					pic: post.pic,
+					//id:post._id.ObjectId,
+					slug:post.slug,
+					public:post.public,
+					snippet:post.snippet
 				};
 		  })
 		: [];
